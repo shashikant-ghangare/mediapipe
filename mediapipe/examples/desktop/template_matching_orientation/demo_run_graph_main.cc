@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// An example of sending OpenCV webcam frames into a MediaPipe graph.
+// An example of sending OpenCV webcam/video frames into a MediaPipe graph for template matching and getting orientation of the detected object using rotated rectangle method.
 #include <cstdlib>
 
 #include "absl/flags/flag.h"

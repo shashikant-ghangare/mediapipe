@@ -85,7 +85,7 @@ node {
   output_stream: "labeled_detections"
   node_options: {
     [type.googleapis.com/mediapipe.TimedBoxListIdToLabelCalculatorOptions] {
-      label_map_path: "mediapipe/models/knift_labelmap_assignemnt.txt"
+      label_map_path: "mediapipe/models/knift_labelmap_assignment.txt"
     }
   }
 }
