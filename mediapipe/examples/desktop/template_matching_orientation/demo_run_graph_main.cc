@@ -29,7 +29,7 @@
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
-#include "mediapipe/calculators/util/timed_box_list_to_render_data_calculator.pb.h"
+#include "mediapipe/calculators/util/timed_box_list_to_render_data_calculator.pb.h" // to extract detected box vertices 
 #include "mediapipe/util/tracking/box_tracker.pb.h"
 
 
@@ -156,6 +156,7 @@ absl::Status RunMPPGraph() {
     cv::Mat output_frame_mat = mediapipe::formats::MatView(&output_frame);
     cv::cvtColor(output_frame_mat, output_frame_mat, cv::COLOR_RGB2BGR);
     
+    //Extract the detected box vertices and get orientation of the object using minAreaRect() method
     for (const auto& box_proto : box_list.box()){
       if (box_proto.has_quad() && box_proto.quad().vertices_size() > 0 &&
           box_proto.quad().vertices_size() % 2 == 0){
@@ -176,7 +177,9 @@ absl::Status RunMPPGraph() {
               angle = 90 - angle;
             else
               angle = -1*angle;
-            std::cout << "Angle:           " << angle  << std::endl;
+            std::cout << "Angle:           " << angle  << std::e_input.mp4
+Template images - https://github.com/shashikant-ghangare/mediapipe/tree/assignment/assignment_templates
+Working output video - See attached files labeled as output_pca.mp4 and output_mar.mp4ndl;
             std::string label = std::to_string(angle) + " degrees";
             cv::rectangle(output_frame_mat,cv::Point(rotatedRect.center.x - 35, rotatedRect.center.y - 25), cv::Point(rotatedRect.center.x + 295, rotatedRect.center.y + 10), cv::Scalar(255,255,255), -1);
             cv::putText(output_frame_mat, label, cv::Point(rotatedRect.center.x - 50, rotatedRect.center.y), cv::FONT_HERSHEY_SIMPLEX, 0.7, cv::Scalar(0,0,0), 1, cv::LINE_AA);

@@ -29,7 +29,7 @@
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
-#include "mediapipe/calculators/util/timed_box_list_to_render_data_calculator.pb.h"
+#include "mediapipe/calculators/util/timed_box_list_to_render_data_calculator.pb.h" // to extract detected box vertices 
 #include "mediapipe/util/tracking/box_tracker.pb.h"
 
 
@@ -156,6 +156,7 @@ absl::Status RunMPPGraph() {
     cv::Mat output_frame_mat = mediapipe::formats::MatView(&output_frame);
     cv::cvtColor(output_frame_mat, output_frame_mat, cv::COLOR_RGB2BGR);
     
+    //Extract the detected box vertices and get orientation of the object using PCA.
     for (const auto& box_proto : box_list.box()){
       if (box_proto.has_quad() && box_proto.quad().vertices_size() > 0 &&
           box_proto.quad().vertices_size() % 2 == 0){

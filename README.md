@@ -53,7 +53,7 @@ Note: Skip the **--input_video_path** to use webcam as input and **--output_vide
 
 ### Using your own template images
 
-5. Templates are present in the **assignment_templates**. Generate the index file for all the templates, run:
+1. Templates are present in the **assignment_templates**. Generate the index file for all the templates, run:
 ```
 $ bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 \
 mediapipe/examples/desktop/template_matching:template_matching_tflite
@@ -62,6 +62,11 @@ $ bazel-bin/mediapipe/examples/desktop/template_matching/template_matching_tflit
 --calculator_graph_config_file=mediapipe/graphs/template_matching/index_building.pbtxt \
 --input_side_packets="file_directory=assignment_templates,file_suffix=jpg,output_index_filename=mediapipe/models/knift_index_assignment.pb"
 ```
-4. Update **mediapipe/models/knift_labelmap_assigment.txt** with your own template names.
+2. Update **mediapipe/models/knift_labelmap_assigment.txt** with your own template names.
+
+## References
+- https://google.github.io/mediapipe/solutions/knift.html
+- https://automaticaddison.com/how-to-determine-the-orientation-of-an-object-using-opencv/
+- https://docs.opencv.org/3.4/d1/dee/tutorial_introduction_to_pca.html
 
 
